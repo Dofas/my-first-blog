@@ -1,18 +1,13 @@
-<html>
-	<head>
-		<title>Dofa's blog</title>
-	</head>
-	<body>
-		<div>
-			<h1><a href="/">Home</a></h1>
-		</div>
+{% extends 'blog/base.html' %}
 
-	{%for post in posts%}
-		<div>
-			<h3><em><a href="">{{ post.title }}</a></em></h3>
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
 			<p>{{ post.text|linebreaksbr }}</p>
-			<p>published: {{ post.published_date }}</p>
+				<div class="date">
+					<p>Опубліковано: {{ post.published_date }}</p>
+				</div>
 		</div>
 	{% endfor %}
-	</body>
-</html>
+{% endblock %}
